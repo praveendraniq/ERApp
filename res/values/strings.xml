@@ -3,6 +3,15 @@
 
     <string name="app_name">ERApp</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="button_main_Login">Log In</string>
+    <string name="title_activity_user_dashboard">UserDashboard</string>
+    <string name="button_user_dashboard_view_Expense">View Expense</string>
+    <string name="button_user_dashboard_add_Expense">Add Expense</string>
+    <string name="button_user_dashboard_report_Expense">Expense Report</string>
+    <string name="title_activity_view_expense">View Expense</string>
+    <string name="viewExpense_period">Period</string>
+    <string name="viewExpense_category">Category</string>
+    <string name="button_viewExpense_view">View</string>
+    <string name="button_viewExpense_cancel">Cancel</string>
 
 </resources>
