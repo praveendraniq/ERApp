@@ -16,8 +16,6 @@ import android.widget.EditText;
 
 public class UserRegister extends Activity {
 	
-	final AlertDialog.Builder builder = new AlertDialog.Builder(this);	
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,6 +26,7 @@ public class UserRegister extends Activity {
 	//** Called when the user clicks the submit button */
 	public void submit(View view) {
 	    final Intent intent = new Intent(this, UserDashboard.class);
+	    final AlertDialog.Builder builder = new AlertDialog.Builder(this);	
 	    
 	    EditText editText = (EditText) findViewById(R.id.edit_Name);
 	    String name = editText.getText().toString();
@@ -104,6 +103,12 @@ public class UserRegister extends Activity {
 	    }  //end of else
 
 	} //end of submit
+	
+	//** Called when the user clicks the submit button */
+		public void back(View view) {
+			final Intent intent = new Intent(this, UserDashboard.class);
+			startActivity(intent);
+		}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

@@ -12,10 +12,10 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:label="@string/app_name" 
-        android:name="ERAppApplication"
+        android:name="org.sjsucmpe131.erapp.ERAppApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name="org.sjsucmpe131.erapp.MainActivity"
@@ -37,6 +37,18 @@
         <activity
             android:name="org.sjsucmpe131.erapp.UserRegister"
             android:label="@string/title_activity_user_register" >
+        </activity>
+        <activity
+            android:name="org.sjsucmpe131.erapp.ViewResultList"
+            android:label="@string/title_activity_view_result_list"
+            android:parentActivityName="android.app.ListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="android.app.ListActivity" />
+        </activity>
+        <activity
+            android:name="org.sjsucmpe131.erapp.ReportResult"
+            android:label="@string/title_activity_report_result" >
         </activity>
     </application>
 

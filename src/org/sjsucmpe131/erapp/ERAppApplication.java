@@ -11,8 +11,8 @@ public class ERAppApplication extends Application {
 		super.onCreate();
 
 		//Connect to Parse 
-		Parse.initialize(this,"your Id",
-				"your key");
+		Parse.initialize(this,"",
+				"");
 
 		//ParseUser.enableAutomaticUser();
 		//ParseACL defaultACL = new ParseACL();

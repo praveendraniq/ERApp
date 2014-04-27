@@ -30,7 +30,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="55dp"
         android:layout_toRightOf="@+id/textView2"
-        android:text="@string/button_viewExpense_view" />
+        android:text="@string/button_viewExpense_view"
+        android:onClick="viewList"/>
 
     <Button
         android:id="@+id/button2"

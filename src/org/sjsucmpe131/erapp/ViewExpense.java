@@ -21,13 +21,21 @@ public class ViewExpense extends Activity {
 		return true;
 	}
 	
-	//** Called when the user clicks the cancel button */
+	//** Called when the user clicks the view button */	
+	public void viewList(View view) {
+	    Intent intent = new Intent(this, ViewResultList.class);
+	    //need add some 
+	    startActivity(intent);
+	}
 	
+	//** Called when the user clicks the cancel button */	
 	public void backScreen(View view) {
 	    Intent intent = new Intent(this, UserDashboard.class);
 	    //need add some 
 	    startActivity(intent);
 	}
+	
+	
 
 
 }

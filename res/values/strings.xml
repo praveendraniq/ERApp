@@ -7,6 +7,7 @@
     <string name="button_main_Register">Register</string>
     <string name="text_Register_Info">Please enter the following information</string>
     <string name="text_Register_Con_Password">Confirm your password</string>
+    <string name="text_Report_Result">Your Expense Report</string>
     <string name="edit_message_name">Name</string>
     <string name="edit_message_email">Email</string>
     <string name="edit_message_password">Password</string>
@@ -20,6 +21,9 @@
     <string name="button_user_dashboard_view_Expense">View Expense</string>
     <string name="button_user_dashboard_add_Expense">Add Expense</string>
     <string name="button_user_dashboard_report_Expense">Expense Report</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_viewResult_other">Other View</string>
+    <string name="button_viewResult_report">Get Report</string>
     <string name="title_activity_view_expense">View Expense</string>
     <string name="viewExpense_period">Period</string>
     <string name="viewExpense_category">Category</string>
@@ -28,6 +32,7 @@
     <string name="title_activity_user_register">UserRegister</string>
     <string name="hello_world">Hello world!</string>
     <string name="imageView_Logo">Logo</string>
+    <string name="title_activity_view_result_list">ViewResultList</string>
+    <string name="title_activity_report_result">ReportResult</string>
 
-    
 </resources>
