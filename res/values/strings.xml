@@ -4,6 +4,16 @@
     <string name="app_name">ERApp</string>
     <string name="action_settings">Settings</string>
     <string name="button_main_Login">Log In</string>
+    <string name="button_main_Register">Register</string>
+    <string name="text_Register_Info">Please enter the following information</string>
+    <string name="text_Register_Con_Password">Confirm your password</string>
+    <string name="edit_message_name">Name</string>
+    <string name="edit_message_email">Email</string>
+    <string name="edit_message_password">Password</string>
+    <string name="button_Register_Submit">Submit</string>
+    <string name="dialog_passwordNotMatch">Your password does not match!</string>
+    <string name="dialog_signUp_error">Your sign up does not succeed.</string>
+    <string name="dialog_title_error">Error</string>
     <string name="title_activity_user_dashboard">UserDashboard</string>
     <string name="button_user_dashboard_view_Expense">View Expense</string>
     <string name="button_user_dashboard_add_Expense">Add Expense</string>
@@ -13,5 +23,9 @@
     <string name="viewExpense_category">Category</string>
     <string name="button_viewExpense_view">View</string>
     <string name="button_viewExpense_cancel">Cancel</string>
+    <string name="title_activity_user_register">UserRegister</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="imageView_Logo">Logo</string>
 
+    
 </resources>
