@@ -15,6 +15,8 @@ import android.widget.EditText;
 
 
 public class UserRegister extends Activity {
+	
+	final AlertDialog.Builder builder = new AlertDialog.Builder(this);	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +28,6 @@ public class UserRegister extends Activity {
 	//** Called when the user clicks the submit button */
 	public void submit(View view) {
 	    final Intent intent = new Intent(this, UserDashboard.class);
-    	final AlertDialog.Builder builder = new AlertDialog.Builder(this);	
 	    
 	    EditText editText = (EditText) findViewById(R.id.edit_Name);
 	    String name = editText.getText().toString();
@@ -59,8 +60,6 @@ public class UserRegister extends Activity {
 						 //will pop the Alert Dialog    
 						 Log.i("ERApp", "signUp In Backgroud did not succeed");
 						 
-						 //some problem the following code
-						 // ********************************//
 			  	    	 builder.setMessage(R.string.dialog_signUp_error)
 			    		.setTitle(R.string.dialog_title_error)
 			    		.setPositiveButton("OK",new DialogInterface.OnClickListener() {
