@@ -11,7 +11,9 @@ public class ERAppApplication extends Application {
 		super.onCreate();
 
 		//Connect to Parse 
-		Parse.initialize(this,"Your Name", "Your Key");
+		Parse.initialize(this,"XXxSkO6Agraiwcbbqsy6uj26buORgCVnvHHKycRd",
+				"CLNLE4wzAfwPcqL8WT2StLkiS0eBt3JjGjGE0Phw");
+
 
 
 		//ParseUser.enableAutomaticUser();

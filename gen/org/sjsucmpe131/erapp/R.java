@@ -62,26 +62,27 @@ public final class R {
         public static final int button_Register_Submit=0x7f050009;
         public static final int button_main_Login=0x7f050002;
         public static final int button_main_Register=0x7f050003;
-        public static final int button_user_dashboard_add_Expense=0x7f05000f;
-        public static final int button_user_dashboard_report_Expense=0x7f050010;
-        public static final int button_user_dashboard_view_Expense=0x7f05000e;
-        public static final int button_viewExpense_cancel=0x7f050015;
-        public static final int button_viewExpense_view=0x7f050014;
+        public static final int button_user_dashboard_add_Expense=0x7f050010;
+        public static final int button_user_dashboard_report_Expense=0x7f050011;
+        public static final int button_user_dashboard_view_Expense=0x7f05000f;
+        public static final int button_viewExpense_cancel=0x7f050016;
+        public static final int button_viewExpense_view=0x7f050015;
+        public static final int dialog_input_empty=0x7f05000d;
         public static final int dialog_passwordNotMatch=0x7f05000a;
         public static final int dialog_signUp_error=0x7f05000b;
         public static final int dialog_title_error=0x7f05000c;
         public static final int edit_message_email=0x7f050007;
         public static final int edit_message_name=0x7f050006;
         public static final int edit_message_password=0x7f050008;
-        public static final int hello_world=0x7f050017;
-        public static final int imageView_Logo=0x7f050018;
+        public static final int hello_world=0x7f050018;
+        public static final int imageView_Logo=0x7f050019;
         public static final int text_Register_Con_Password=0x7f050005;
         public static final int text_Register_Info=0x7f050004;
-        public static final int title_activity_user_dashboard=0x7f05000d;
-        public static final int title_activity_user_register=0x7f050016;
-        public static final int title_activity_view_expense=0x7f050011;
-        public static final int viewExpense_category=0x7f050013;
-        public static final int viewExpense_period=0x7f050012;
+        public static final int title_activity_user_dashboard=0x7f05000e;
+        public static final int title_activity_user_register=0x7f050017;
+        public static final int title_activity_view_expense=0x7f050012;
+        public static final int viewExpense_category=0x7f050014;
+        public static final int viewExpense_period=0x7f050013;
     }
     public static final class style {
         /** 

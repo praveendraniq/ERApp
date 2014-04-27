@@ -14,6 +14,7 @@
     <string name="dialog_passwordNotMatch">Your password does not match!</string>
     <string name="dialog_signUp_error">Your sign up does not succeed.</string>
     <string name="dialog_title_error">Error</string>
+    <string name="dialog_input_empty">Please enpter the information.</string>
     <string name="title_activity_user_dashboard">UserDashboard</string>
     <string name="button_user_dashboard_view_Expense">View Expense</string>
     <string name="button_user_dashboard_add_Expense">Add Expense</string>

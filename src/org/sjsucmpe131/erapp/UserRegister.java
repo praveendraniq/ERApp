@@ -40,7 +40,8 @@ public class UserRegister extends Activity {
 	    editText = (EditText) findViewById(R.id.edit_Password2);
 	    String password2 = editText.getText().toString();
 	    
-	    if(password.equals(password2)){	 
+	    if(password.equals(password2) && name != null && !name.isEmpty() && password!=null && !password.isEmpty()
+	    		&& email!= null && !email.isEmpty() ){	 
 	    	//Use ParseUser to signUp for new users		
 			ParseUser user = new ParseUser();
 		    user.setUsername(name);
@@ -74,6 +75,21 @@ public class UserRegister extends Activity {
 				}		
 			 });//end of signUpInBackground	  	    	
 	    } //end of if
+	    else if(password.isEmpty() || name.isEmpty() || email.isEmpty()){
+	    	//will pop the Alert Dialog    
+	    	Log.i("ERApp", "signUp with empty input");
+	    	builder.setMessage(R.string.dialog_input_empty)
+	    		.setTitle(R.string.dialog_title_error)
+	    		.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+	    			public void onClick(DialogInterface dialog,int id) {
+					// if this button is clicked, close current activity
+				}
+	        });	    	
+	    	AlertDialog dialog = builder.create();
+	    	dialog.show();
+	    	
+	    }
+	    
 	    else{
 	    	//will pop the Alert Dialog    	
 	    	builder.setMessage(R.string.dialog_passwordNotMatch)
@@ -88,7 +104,7 @@ public class UserRegister extends Activity {
 	    	dialog.show();	    		    	
 	    }  //end of else
 
-	} //end of sumbit
+	} //end of submit
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
