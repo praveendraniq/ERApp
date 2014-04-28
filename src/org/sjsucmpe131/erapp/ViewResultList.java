@@ -1,10 +1,12 @@
 package org.sjsucmpe131.erapp;
 
+
 import java.util.List;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -57,12 +59,20 @@ public class ViewResultList extends ListActivity  {
 			
 			Log.i("ERApp", "onPostExecute");	  
 			// Put the list of expense into the list view
+			//ArrayAdapter<String> adapter = new ArrayAdapter<String>(ViewResultList.this,
+			//		R.layout.view_result_row);
+					
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(ViewResultList.this,
-					R.layout.view_result_row);
+							R.layout.view_result_row);
 	        if (!expense.isEmpty()) {
 	            for (ParseObject expe : expense) {
-	                adapter.add((String) expe.get("Description"));
-	                
+	            	String strResult = String.valueOf(expe.getDate("Date")).substring(0, 10) + "  " 
+	            			+String.valueOf(expe.get("Amount")) + "  "
+	            			+ (String) expe.get("Category") + "  " 
+	            			+ (String) expe.get("Merchant") + "  "
+	            			+ (String) expe.get("PayMethod") + "  "
+	            			+ (String) expe.get("Description");
+	                adapter.add(strResult);                
 	                Log.i("ERApp", "*****Query datas expense");	                
 	            }
 	        }
