@@ -11,8 +11,7 @@ public class ERAppApplication extends Application {
 		super.onCreate();
 
 		//Connect to Parse 
-		Parse.initialize(this,"XXxSkO6Agraiwcbbqsy6uj26buORgCVnvHHKycRd",
-				"CLNLE4wzAfwPcqL8WT2StLkiS0eBt3JjGjGE0Phw");
+		Parse.initialize(this,"QTIPmxcZt4wCsgLahQ90rP5W9NceJ7LQe3v8oRHN", "4YKTX5gnRMH0pyr9vPhEYtEiwZY05QfxabAymlzV");
 
 		
 		
