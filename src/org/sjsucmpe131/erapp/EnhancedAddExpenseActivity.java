@@ -12,6 +12,7 @@ import android.app.Activity;
  * 
  */
 public abstract class EnhancedAddExpenseActivity extends Activity {
+	private ParseObject isComplete = new ParseObject("isComplete");
 
 	/**
 	 * The ParseObject will be initialized and assigned values in the Add
@@ -26,7 +27,12 @@ public abstract class EnhancedAddExpenseActivity extends Activity {
 	 * 
 	 */
 	public void saveData(ParseObject data) {
-		// A Temporary_ExpenseObject Object
+		// CHECK ALL DATA FIELDS IN ADD EXPENSE UI
+		// IF ANY FIELD IS EMPTY
+				// isComplete.put(status,"false");
+				// isComplete.saveInBackground();
+
+		// A ExpenseObject Object saved
 		data.saveInBackground();
 	}
 
@@ -36,14 +42,17 @@ public abstract class EnhancedAddExpenseActivity extends Activity {
 	 * storage based.
 	 * 
 	 * This function will be implemented in the onCreate() activity if
-	 * Temporary_ExpenseObject != null.
+	 * isComplete.getBoolean("status") == true.
+	 * 
 	 */
 
 	public void restoreData(String dataName) {
 		ParseQuery<ParseObject> query = ParseQuery
-				.getQuery("Temporary_ExpenseObject");
-		// RESTORE VALUES INTO UI FIELDS.
-		// TBA SINCE ADD EXPENSE UI IS NOT SUBMITTED YET.
+				.getQuery(dataName);
+		// RESTORE VALUES INTO UI FIELDS
+			//GET FIELDS FROM DATA OBJECT
+			//PLACE VALUES INTO UI
+		// TBA; WAITING FOR ADD EXPENSE BY ATIF
 
 	}
 }
