@@ -1,55 +1,63 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/black"
+    android:orientation="vertical"
+    android:padding="30dp"
     tools:context=".MainActivity" >
     
 
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="160dip"
-            android:layout_height="160dip"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:contentDescription="@string/imageView_Logo"
-            android:src="@drawable/logo" />
+    <TextView
+        android:id="@+id/login_screen_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:text="Welcome!"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+    
+    <TextView
+        android:id="@+id/login_welcome_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp"
+        android:text="Welcome to the expense reporting application ERApp, please login or register below!"
+        android:textColor="@color/white" >
+</TextView>
         
         <EditText
             android:id="@+id/edit_Name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imageView1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:ems="20"
+            android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:ems="10"
             android:hint="@string/edit_message_name"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName" 
+            android:textColor="@color/fontcolor"
+            />
          
          <EditText
              android:id="@+id/edit_Password"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignLeft="@+id/edit_Name"
-             android:layout_alignRight="@+id/edit_Name"
-             android:layout_below="@+id/edit_Name"
-             android:layout_marginTop="20dp"
-             android:ems="10"
+             android:layout_width="match_parent"
+        	 android:layout_height="wrap_content"
+        	 android:ems="10"
              android:hint="@string/edit_message_password"
              android:inputType="textPassword" />
 
+         <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="30dp" >
+        
         <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/edit_Password"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
             android:onClick="logIn"
-            android:text="@string/button_main_Login" />
+            android:text="@string/button_main_Login" 
+            android:textColor="@color/fontcolor"
+            />
 
  
 
@@ -57,10 +65,44 @@
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/button1"
-            android:layout_below="@+id/button1"
-            android:layout_marginTop="30dp"
             android:onClick="Register"
-            android:text="@string/button_main_Register" />
+            android:text="@string/button_main_Register" 
+            android:textColor="@color/fontcolor"
+            />
+            </LinearLayout>
+            
+             <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="20dp" >
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:text="or"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/login_facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign in with Facebook"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/login_google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign in with Google" 
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+        
+
+</LinearLayout>

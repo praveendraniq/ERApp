@@ -3,6 +3,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context="org.sjsucmpe131.erapp.ReportResult">
 
     <TextView
@@ -12,6 +13,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
-        android:text="@string/text_Report_Result" />
+        android:text="@string/text_Report_Result" 
+        android:textColor="@color/fontcolor"
+        />
 
 </RelativeLayout>
