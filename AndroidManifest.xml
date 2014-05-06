@@ -32,7 +32,7 @@
         </activity>
         <activity
             android:name="org.sjsucmpe131.erapp.ViewExpense"
-            android:label="@string/title_activity_view_expense" >              
+            android:label="@string/title_activity_view_expense" >
         </activity>
         <activity
             android:name="org.sjsucmpe131.erapp.UserRegister"
@@ -51,7 +51,7 @@
             android:label="@string/title_activity_report_result" >
         </activity>
         <activity
-            android:name="org.sjsucmpe131.expenselisting.ThisWeek_Activity"
+            android:name="org.sjsucmpe131.expenselisting.Today_Activity"
             android:label="@string/title_activity_this_week"
             android:parentActivityName="android.accounts.AccountAuthenticatorActivity" >
         </activity>
@@ -66,6 +66,10 @@
         <activity
             android:name="org.sjsucmpe131.expenselisting.All_Activity"
             android:label="@string/title_activity_all" >
+        </activity>
+        <activity
+            android:name="org.sjsucmpe131.erapp.AddExpense"
+            android:label="@string/title_activity_add_expense" >
         </activity>
     </application>
 

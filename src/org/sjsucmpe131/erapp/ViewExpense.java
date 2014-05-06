@@ -2,7 +2,7 @@ package org.sjsucmpe131.erapp;
 
 import org.sjsucmpe131.expenselisting.All_Activity;
 import org.sjsucmpe131.expenselisting.ThisMonth_Activity;
-import org.sjsucmpe131.expenselisting.ThisWeek_Activity;
+import org.sjsucmpe131.expenselisting.Today_Activity;
 import org.sjsucmpe131.expenselisting.ThisYear_Activity;
 import android.os.Bundle;
 import android.app.TabActivity;
@@ -25,12 +25,12 @@ public class ViewExpense extends TabActivity {
 		Resources ressources = getResources(); 
 		TabHost tabHost = getTabHost();
  
-		// This week tab
-		Intent intentWeek = new Intent().setClass(this, ThisWeek_Activity.class);
-		TabSpec tabSpecWeek = tabHost
-		  .newTabSpec("This Week")
-		  .setIndicator("This Week", ressources.getDrawable(R.drawable.tab_this_week)) 
-		  .setContent(intentWeek);
+		// Today tab
+		Intent intentToday = new Intent().setClass(this, Today_Activity.class);
+		TabSpec tabSpecToday = tabHost
+		  .newTabSpec("Today")
+		  .setIndicator("Today") 
+		  .setContent(intentToday);
 
 
 		// This month tab
@@ -55,7 +55,7 @@ public class ViewExpense extends TabActivity {
 		  .setContent(intentAll);
 				 
 		// add all tabs 
-		tabHost.addTab(tabSpecWeek);
+		tabHost.addTab(tabSpecToday);
 		tabHost.addTab(tabSpecMonth);
 		tabHost.addTab(tabSpecYear);
 		tabHost.addTab(tabSpecAll);

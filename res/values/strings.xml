@@ -38,5 +38,7 @@
     <string name="title_activity_this_month">ThisMonth</string>
     <string name="title_activity_this_year">ThisYear</string>
     <string name="title_activity_all">All</string>
+    <string name="no_expenses_text">No expenses available to show, Please add expenses</string>
+    <string name="title_activity_add_expense">AddExpense</string>
 
 </resources>

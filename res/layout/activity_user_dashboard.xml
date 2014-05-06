@@ -16,7 +16,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="90dp"
         android:layout_marginTop="120dp"
-        android:text="@string/button_user_dashboard_add_Expense" />
+        android:text="@string/button_user_dashboard_add_Expense" 
+        android:onClick="addExpense"/>
 
     <Button
         android:id="@+id/button2"

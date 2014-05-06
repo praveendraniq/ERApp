@@ -1,27 +1,24 @@
 package org.sjsucmpe131.expenselisting;
 
+import java.util.Date;
 import java.util.List;
 import org.sjsucmpe131.erapp.R;
-import org.sjsucmpe131.erapp.ReportResult;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 
 
-
-public class All_Activity extends ListActivity {
-
+public class Today_Activity extends ListActivity {
+	
 	private List<ParseObject> expense;
 	public Dialog progressDialog;
 	
@@ -30,8 +27,19 @@ public class All_Activity extends ListActivity {
 		
 		// Override this method to do custom remote calls
 		protected Void doInBackground(Void... params) {
-			// Gets the current list of expense in sorted order
+			Date today = new Date();	
+			today.setHours(0);
+			today.setMinutes(0);
+			today.setSeconds(0);
+			
+			Log.i("ERApp", "today date is ");
+			Log.d("ADebugTag", "Value: " + today.toString());
+
+			
+			// Gets the today list of expense in sorted order
 			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("ExpenseObject");
+			query.whereGreaterThan("Date", today);
+			
 			query.orderByDescending("Date");
 			Log.i("ERApp", "Query datas result doInBackgroud");	
 			try {
@@ -43,7 +51,7 @@ public class All_Activity extends ListActivity {
 				
 		@Override
 		protected void onPreExecute() {
-			All_Activity.this.progressDialog = ProgressDialog.show(All_Activity.this, "",
+			Today_Activity.this.progressDialog = ProgressDialog.show(Today_Activity.this, "",
 					"Loading...", true);
 			super.onPreExecute();
 		}
@@ -58,15 +66,14 @@ public class All_Activity extends ListActivity {
 			
 			Log.i("ERApp", "onPostExecute");	  
 			// Put the list of expense into the list view					
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(All_Activity.this,
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(Today_Activity.this,
 							R.layout.view_result_row);
 	        if (!expense.isEmpty()) {
 	            for (ParseObject expe : expense) {
-	            	String strResult = String.valueOf(expe.get("Date")).substring(4, 10) + " - " 
-	            			+String.valueOf(expe.get("Date")).substring(30, 34) +"    "
-	            			+String.valueOf(expe.get("Amount")) + "    "
-	            			+ (String) expe.get("Category") + "    " 
-	            			+ (String) expe.get("Merchant") + "    "
+	            	String strResult = String.valueOf(expe.getDate("Date")).substring(4, 10) + "  " 
+	            			+String.valueOf(expe.get("Amount")) + "  "
+	            			+ (String) expe.get("Category") + "  " 
+	            			+ (String) expe.get("Merchant") + "  "
 	            			+ (String) expe.get("PayMethod") + "  "
 	            			+ (String) expe.get("Description");
 	                adapter.add(strResult);                
@@ -77,29 +84,23 @@ public class All_Activity extends ListActivity {
 	        	Log.i("ERApp", "????Query datas from expense empty");	    
 	        }
 			setListAdapter(adapter);
-	        All_Activity.this.progressDialog.dismiss();
+			Today_Activity.this.progressDialog.dismiss();
 			Log.i("ERApp", "Query datas succeed form Object Expense");	
 		}		
 }
-
 	
+	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_result_list);	
 		//list the query result in background		
 		new RemoteDataTask().execute();
-
-
+			
+		
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.all_, menu);
-		return true;
-	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -113,14 +114,4 @@ public class All_Activity extends ListActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-
-	//** Called when the user clicks the Other View button */
-	
-	public void generateReport(View view) {
-	    Intent intent = new Intent(this, ReportResult.class);
-	    //need add some 
-	    startActivity(intent);
-
-	}
-	
 }
