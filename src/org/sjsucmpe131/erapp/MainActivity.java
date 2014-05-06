@@ -78,15 +78,4 @@ public class MainActivity extends Activity {
 	    //here need some code to add user email and password to database
 	    startActivity(intent);
 	}
-	
-	@Override
-	protected void onResume(){
-		super.onResume();
-	}
-	
-	@Override
-	protected void onPause(){
-		super.onPause();
-	}	
-
 }
