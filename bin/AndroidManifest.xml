@@ -16,7 +16,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@android:style/Theme.NoTitleBar" >
         <activity
             android:name="org.sjsucmpe131.erapp.MainActivity"
             android:label="@string/app_name" >
@@ -32,7 +32,7 @@
         </activity>
         <activity
             android:name="org.sjsucmpe131.erapp.ViewExpense"
-            android:label="@string/title_activity_view_expense" >
+            android:label="@string/title_activity_view_expense" >              
         </activity>
         <activity
             android:name="org.sjsucmpe131.erapp.UserRegister"
@@ -49,6 +49,23 @@
         <activity
             android:name="org.sjsucmpe131.erapp.ReportResult"
             android:label="@string/title_activity_report_result" >
+        </activity>
+        <activity
+            android:name="org.sjsucmpe131.expenselisting.ThisWeek_Activity"
+            android:label="@string/title_activity_this_week"
+            android:parentActivityName="android.accounts.AccountAuthenticatorActivity" >
+        </activity>
+        <activity
+            android:name="org.sjsucmpe131.expenselisting.ThisMonth_Activity"
+            android:label="@string/title_activity_this_month" >
+        </activity>
+        <activity
+            android:name="org.sjsucmpe131.expenselisting.ThisYear_Activity"
+            android:label="@string/title_activity_this_year" >
+        </activity>
+        <activity
+            android:name="org.sjsucmpe131.expenselisting.All_Activity"
+            android:label="@string/title_activity_all" >
         </activity>
     </application>
 

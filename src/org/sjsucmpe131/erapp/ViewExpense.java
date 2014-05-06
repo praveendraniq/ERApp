@@ -1,17 +1,68 @@
 package org.sjsucmpe131.erapp;
 
+import org.sjsucmpe131.expenselisting.All_Activity;
+import org.sjsucmpe131.expenselisting.ThisMonth_Activity;
+import org.sjsucmpe131.expenselisting.ThisWeek_Activity;
+import org.sjsucmpe131.expenselisting.ThisYear_Activity;
 import android.os.Bundle;
-import android.app.Activity;
+import android.app.TabActivity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.view.Menu;
-import android.view.View;
+import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
 
-public class ViewExpense extends Activity {
+
+
+@SuppressWarnings("deprecation")
+public class ViewExpense extends TabActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_expense);
+		
+		Resources ressources = getResources(); 
+		TabHost tabHost = getTabHost();
+ 
+		// This week tab
+		Intent intentWeek = new Intent().setClass(this, ThisWeek_Activity.class);
+		TabSpec tabSpecWeek = tabHost
+		  .newTabSpec("This Week")
+		  .setIndicator("This Week", ressources.getDrawable(R.drawable.tab_this_week)) 
+		  .setContent(intentWeek);
+
+
+		// This month tab
+		Intent intentMonth = new Intent().setClass(this, ThisMonth_Activity.class);
+		TabSpec tabSpecMonth = tabHost
+		  .newTabSpec("This Month")
+		  .setIndicator("This Month", ressources.getDrawable(R.drawable.tab_this_month)) 
+		  .setContent(intentMonth);
+
+		// This year tab
+		Intent intentYear = new Intent().setClass(this, ThisYear_Activity.class);
+		TabSpec tabSpecYear = tabHost
+		  .newTabSpec("This Year")
+		  .setIndicator("This Year", ressources.getDrawable(R.drawable.tab_this_year)) 
+		  .setContent(intentYear);
+
+		// All tab
+		Intent intentAll = new Intent().setClass(this, All_Activity.class);
+		TabSpec tabSpecAll = tabHost
+		  .newTabSpec("All")
+		  .setIndicator("All", ressources.getDrawable(R.drawable.tab_all)) 
+		  .setContent(intentAll);
+				 
+		// add all tabs 
+		tabHost.addTab(tabSpecWeek);
+		tabHost.addTab(tabSpecMonth);
+		tabHost.addTab(tabSpecYear);
+		tabHost.addTab(tabSpecAll);
+
+		//set ThisWeek tab as default (zero based)
+		tabHost.setCurrentTab(0);
+	
 	}
 
 	@Override
@@ -21,21 +72,7 @@ public class ViewExpense extends Activity {
 		return true;
 	}
 	
-	//** Called when the user clicks the view button */	
-	public void viewList(View view) {
-	    Intent intent = new Intent(this, ViewResultList.class);
-	    //need add some 
-	    startActivity(intent);
-	}
-	
-	//** Called when the user clicks the cancel button */	
-	public void backScreen(View view) {
-	    Intent intent = new Intent(this, UserDashboard.class);
-	    //need add some 
-	    startActivity(intent);
-	}
-	
-	
+
 
 
 }

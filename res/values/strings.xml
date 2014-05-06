@@ -34,5 +34,9 @@
     <string name="imageView_Logo">Logo</string>
     <string name="title_activity_view_result_list">ViewResultList</string>
     <string name="title_activity_report_result">ReportResult</string>
+    <string name="title_activity_this_week">ThisWeek</string>
+    <string name="title_activity_this_month">ThisMonth</string>
+    <string name="title_activity_this_year">ThisYear</string>
+    <string name="title_activity_all">All</string>
 
 </resources>

@@ -1,8 +1,6 @@
 package org.sjsucmpe131.erapp;
 
-
 import java.util.List;
-
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -84,7 +82,6 @@ public class ViewResultList extends ListActivity  {
 			Log.i("ERApp", "Query datas succeed form Object Expense");	
 		}		
 }
-
 
 
 	@Override
