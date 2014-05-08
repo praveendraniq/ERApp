@@ -33,6 +33,16 @@
     <string name="hello_world">Hello world!</string>
     <string name="imageView_Logo">Logo</string>
     <string name="title_activity_view_result_list">ViewResultList</string>
-    <string name="title_activity_report_result">ReportResult</string>
+    <string name="title_activity_report_result">ReportResult</string><string-array name="SortingCategories">
+        <item >By Date</item>
+        <item >By Month</item>
+        <item >By Year</item>
+    </string-array>
+    
+    <string-array name="ViewingCategories">
+        <item >As Single Entries</item>
+        <item >As Listed Entries</item>
+    </string-array><string-array name="ByEmployee"></string-array>
+    
 
 </resources>

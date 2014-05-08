@@ -31,7 +31,10 @@ public abstract class EnhancedAddExpenseActivity extends Activity {
 		// IF ANY FIELD IS EMPTY
 				// isComplete.put(status,"false");
 				// isComplete.saveInBackground();
-
+		//ELSE 
+				// isComplete.put(status,"true");
+				// isComplete.saveInBackground();
+		
 		// A ExpenseObject Object saved
 		data.saveInBackground();
 	}

@@ -8,6 +8,11 @@
 package org.sjsucmpe131.erapp;
 
 public final class R {
+    public static final class array {
+        public static final int ByEmployee=0x7f070002;
+        public static final int SortingCategories=0x7f070000;
+        public static final int ViewingCategories=0x7f070001;
+    }
     public static final class attr {
     }
     public static final class color {
@@ -38,46 +43,48 @@ public final class R {
         public static final int logo=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f090016;
-        public static final int button1=0x7f090004;
-        public static final int button2=0x7f090005;
-        public static final int button3=0x7f09000a;
-        public static final int button4=0x7f09000b;
-        public static final int container=0x7f090009;
-        public static final int edit_Email=0x7f090010;
-        public static final int edit_Name=0x7f090002;
-        public static final int edit_Password=0x7f090003;
-        public static final int edit_Password2=0x7f090011;
-        public static final int login_facebook=0x7f090007;
-        public static final int login_google=0x7f090008;
-        public static final int login_screen_welcome=0x7f090000;
-        public static final int login_welcome_message=0x7f090001;
-        public static final int scrollView1=0x7f090014;
-        public static final int signup_ForG=0x7f09000d;
-        public static final int signup_facebook=0x7f09000c;
-        public static final int signup_google=0x7f09000e;
-        public static final int signup_ortextfields=0x7f09000f;
-        public static final int text=0x7f090015;
-        public static final int textView1=0x7f090006;
-        public static final int textView2=0x7f090012;
-        public static final int textView3=0x7f090013;
+        public static final int action_settings=0x7f0a0017;
+        public static final int button1=0x7f0a0004;
+        public static final int button2=0x7f0a0005;
+        public static final int button3=0x7f0a000a;
+        public static final int button4=0x7f0a000b;
+        public static final int container=0x7f0a0009;
+        public static final int edit_Email=0x7f0a0010;
+        public static final int edit_Name=0x7f0a0002;
+        public static final int edit_Password=0x7f0a0003;
+        public static final int edit_Password2=0x7f0a0011;
+        public static final int login_facebook=0x7f0a0007;
+        public static final int login_google=0x7f0a0008;
+        public static final int login_screen_welcome=0x7f0a0000;
+        public static final int login_welcome_message=0x7f0a0001;
+        public static final int scrollView1=0x7f0a0014;
+        public static final int signup_ForG=0x7f0a000d;
+        public static final int signup_facebook=0x7f0a000c;
+        public static final int signup_google=0x7f0a000e;
+        public static final int signup_ortextfields=0x7f0a000f;
+        public static final int spinner1=0x7f0a0015;
+        public static final int text=0x7f0a0016;
+        public static final int textView1=0x7f0a0006;
+        public static final int textView2=0x7f0a0012;
+        public static final int textView3=0x7f0a0013;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int activity_report_result=0x7f030001;
         public static final int activity_user_dashboard=0x7f030002;
         public static final int activity_user_register=0x7f030003;
-        public static final int activity_view_expense=0x7f030004;
-        public static final int activity_view_result_list=0x7f030005;
-        public static final int view_result_row=0x7f030006;
+        public static final int activity_view_expense_corporate=0x7f030004;
+        public static final int activity_view_expense_individual=0x7f030005;
+        public static final int activity_view_result_list=0x7f030006;
+        public static final int view_result_row=0x7f030007;
     }
     public static final class menu {
-        public static final int main=0x7f080000;
-        public static final int report_result=0x7f080001;
-        public static final int user_dashboard=0x7f080002;
-        public static final int user_register=0x7f080003;
-        public static final int view_expense=0x7f080004;
-        public static final int view_result_list=0x7f080005;
+        public static final int main=0x7f090000;
+        public static final int report_result=0x7f090001;
+        public static final int user_dashboard=0x7f090002;
+        public static final int user_register=0x7f090003;
+        public static final int view_expense=0x7f090004;
+        public static final int view_result_list=0x7f090005;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;
@@ -136,10 +143,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
     }
 }
