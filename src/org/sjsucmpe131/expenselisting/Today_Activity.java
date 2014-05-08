@@ -2,6 +2,8 @@ package org.sjsucmpe131.expenselisting;
 
 import java.util.Date;
 import java.util.List;
+
+import org.sjsucmpe131.erapp.AddExpense;
 import org.sjsucmpe131.erapp.R;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -9,11 +11,12 @@ import com.parse.ParseQuery;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 
 
@@ -70,7 +73,7 @@ public class Today_Activity extends ListActivity {
 							R.layout.view_result_row);
 	        if (!expense.isEmpty()) {
 	            for (ParseObject expe : expense) {
-	            	String strResult = String.valueOf(expe.getDate("Date")).substring(4, 10) + "  " 
+	            	String strResult = String.valueOf(expe.getDate("Date")).substring(4, 10) + "  " +"$" 
 	            			+String.valueOf(expe.get("Amount")) + "  "
 	            			+ (String) expe.get("Category") + "  " 
 	            			+ (String) expe.get("Merchant") + "  "
@@ -94,14 +97,11 @@ public class Today_Activity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_view_result_list);	
+		setContentView(R.layout.activity_today);	
 		//list the query result in background		
-		new RemoteDataTask().execute();
-			
-		
+		new RemoteDataTask().execute();		
 	}
-
-
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -114,4 +114,13 @@ public class Today_Activity extends ListActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+
+	//** Called when the user clicks the button Get Report */	
+		
+	public void addTodayExpense(View view) {
+	    Intent intent = new Intent(this, AddExpense.class);
+	    startActivity(intent);
+
+	}
+	
 }

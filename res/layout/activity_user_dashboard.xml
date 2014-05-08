@@ -36,6 +36,7 @@
         android:layout_alignLeft="@+id/button2"
         android:layout_below="@+id/button2"
         android:layout_marginTop="40dp"
-        android:text="@string/button_user_dashboard_report_Expense" />
+        android:text="@string/button_user_dashboard_report_Expense" 
+        android:onClick="reportScreen" />
 
 </RelativeLayout>

@@ -24,12 +24,26 @@
     <string name="button_cancel">Cancel</string>
     <string name="button_viewResult_other">Other View</string>
     <string name="button_viewResult_report">Get Report</string>
+    <string name="button_Report_Submit">Export</string>
+    <string name="button_today_add_expense">Add Expense</string>
+    <string name= "text_report_period">Please select the period for report</string>
+    <string-array name="period_array">
+        <item>1 Month</item>
+        <item>2 Month</item>
+        <item>3 Month</item>
+        <item>4 Month</item>
+        <item>5 Month</item>
+        <item>6 Month</item>
+        <item>1 Year</item>
+        <item>2 Year</item>
+    </string-array>
+    
     <string name="title_activity_view_expense">View Expense</string>
     <string name="viewExpense_period">Period</string>
     <string name="viewExpense_category">Category</string>
     <string name="button_viewExpense_view">View</string>
     <string name="button_viewExpense_cancel">Cancel</string>
-    <string name="title_activity_user_register">UserRegister</string>
+    <string name="title_activity_user_register">User Register</string>
     <string name="hello_world">Hello world!</string>
     <string name="imageView_Logo">Logo</string>
     <string name="title_activity_view_result_list">ViewResultList</string>
@@ -39,6 +53,7 @@
     <string name="title_activity_this_year">ThisYear</string>
     <string name="title_activity_all">All</string>
     <string name="no_expenses_text">No expenses available to show, Please add expenses</string>
-    <string name="title_activity_add_expense">AddExpense</string>
+    <string name="title_activity_add_expense">Add Expense</string>
+    <string name="title_activity_expense_report">Expense Report</string>
 
 </resources>

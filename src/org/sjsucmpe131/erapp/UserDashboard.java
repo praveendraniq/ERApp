@@ -27,6 +27,14 @@ public class UserDashboard extends Activity {
 	    //need add some 
 	    startActivity(intent);
 	}
+	
+	
+	//** Called when the user clicks the  Expense Report button */
+	public void reportScreen(View view) {
+	    Intent intent = new Intent(this, ExpenseReport.class);
+	    //need add some 
+	    startActivity(intent);
+	}
 
 	//** Called when the user clicks the Add Expense button */
 	public void addExpense(View view) {

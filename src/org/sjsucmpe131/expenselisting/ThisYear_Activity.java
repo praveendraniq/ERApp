@@ -71,7 +71,7 @@ public class ThisYear_Activity extends ListActivity {
 							R.layout.view_result_row);
 	        if (!expense.isEmpty()) {
 	            for (ParseObject expe : expense) {
-	            	String strResult = String.valueOf(expe.getDate("Date")).substring(4, 10) + "  " 
+	            	String strResult = String.valueOf(expe.getDate("Date")).substring(4, 10) + "  " +"$" 
 	            			+String.valueOf(expe.get("Amount")) + "  "
 	            			+ (String) expe.get("Category") + "  " 
 	            			+ (String) expe.get("Merchant") + "  "

@@ -78,7 +78,7 @@ public class All_Activity extends ListActivity {
 	        if (!expense.isEmpty()) {
 	            for (ParseObject expe : expense) {
 	            	String strResult = String.valueOf(expe.get("Date")).substring(4, 10) + " - "
-	            			+String.valueOf(expe.get("Date")).substring(24, 28) +"    "
+	            			+String.valueOf(expe.get("Date")).substring(24, 28) +"    "+"$"
 	            			+String.valueOf(expe.get("Amount")) + "    "
 	            			+ (String) expe.get("Category") + "    " 
 	            			+ (String) expe.get("Merchant") + "    "
@@ -130,7 +130,7 @@ public class All_Activity extends ListActivity {
 		    	            for (ParseObject expe : expense) {
 		    	            	String arrStr[]={String.valueOf(expe.get("Date")).substring(4, 10) + " - " 
 		    	            			+String.valueOf(expe.get("Date")).substring(24, 28), 
-		    	            			String.valueOf(expe.get("Amount")),
+		    	            			"$" +String.valueOf(expe.get("Amount")),
 		    	            			(String) expe.get("Category"),
 		    	            			(String) expe.get("Merchant"),
 		    	            			(String) expe.get("PayMethod"),
