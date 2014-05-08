@@ -22,7 +22,6 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -30,6 +29,7 @@
             android:name="org.sjsucmpe131.erapp.UserDashboard"
             android:label="@string/title_activity_user_dashboard" >
         </activity>
+
         <activity
             android:name="org.sjsucmpe131.erapp.ViewExpense"
             android:label="@string/title_activity_view_expense" >
@@ -38,6 +38,11 @@
             android:name="org.sjsucmpe131.erapp.UserRegister"
             android:label="@string/title_activity_user_register" >
         </activity>
+          <activity
+            android:name="org.sjsucmpe131.erapp.AddExpense"
+            android:label="@string/button_user_dashboard_add_Expense" >
+        </activity>
+        
         <activity
             android:name="org.sjsucmpe131.erapp.ViewResultList"
             android:label="@string/title_activity_view_result_list"

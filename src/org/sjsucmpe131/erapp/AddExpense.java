@@ -118,7 +118,7 @@ public class AddExpense extends Activity {
 		Button callGalleryButton = (Button) findViewById(R.id.button_gallery);
 		callGalleryButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				Intent i = new Intent(static
+				Intent i = new Intent(
 						Intent.ACTION_PICK,
 						android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 				startActivityForResult(i, SELECT_IMAGE);
@@ -230,12 +230,12 @@ public class AddExpense extends Activity {
 		date.setText("" + expenseReport.getString("date"));
 		comment.setText("" + expenseReport.getString("comment"));
 
-		restoreSpinnerField(currency, entries_currency,
-				expenseReport.getString("currency"));
-		restoreSpinnerField(category, entries_category,
-				expenseReport.getString("category"));
-		restoreSpinnerField(payment, entries_payment,
-				expenseReport.getString("payment"));
+//		restoreSpinnerField(currency, entries_currency,
+//				expenseReport.getString("currency"));
+//		restoreSpinnerField(category, entries_category,
+//				expenseReport.getString("category"));
+//		restoreSpinnerField(payment, entries_payment,
+//				expenseReport.getString("payment"));
 	}
 
 	private void restoreSpinnerField(Spinner spinner, ArrayAdapter arr,
