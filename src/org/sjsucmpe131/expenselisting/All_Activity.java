@@ -6,15 +6,21 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+
 import org.sjsucmpe131.erapp.R;
 import org.sjsucmpe131.erapp.ReportResult;
+
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -71,8 +77,8 @@ public class All_Activity extends ListActivity {
 							R.layout.view_result_row);
 	        if (!expense.isEmpty()) {
 	            for (ParseObject expe : expense) {
-	            	String strResult = String.valueOf(expe.get("Date")).substring(4, 10) + " - " 
-	            			+String.valueOf(expe.get("Date")).substring(30, 34) +"    "
+	            	String strResult = String.valueOf(expe.get("Date")).substring(4, 10) + " - "
+	            			+String.valueOf(expe.get("Date")).substring(24, 28) +"    "
 	            			+String.valueOf(expe.get("Amount")) + "    "
 	            			+ (String) expe.get("Category") + "    " 
 	            			+ (String) expe.get("Merchant") + "    "
@@ -93,6 +99,7 @@ public class All_Activity extends ListActivity {
 	
 	//class to put task get csv file in background	
 	private class ExportCSVTask extends AsyncTask<String, Boolean, Boolean>{
+		 	private File file=null;	    
 		
 			private final ProgressDialog dialog = new ProgressDialog(All_Activity.this);
 			
@@ -106,7 +113,7 @@ public class All_Activity extends ListActivity {
 			// Override this method to do custom remote calls
 			protected Boolean doInBackground(final String... args){
 					
-				    File file=null;	    
+				   
 				    File exportDir = new File(Environment.getExternalStorageDirectory(), "");
 			        if (!exportDir.exists()) {
 			            exportDir.mkdirs();
@@ -115,11 +122,22 @@ public class All_Activity extends ListActivity {
 			        file = new File(exportDir, "expense_report.csv");
 			        try {         
 			            file.createNewFile();
-			            CSVWriter csvWrite = new CSVWriter(new FileWriter(file));			            
-			            //need write the query result to csv file
-			            //?? need add some code to put the query result to report
-			            
-			            csvWrite.writeNext("Test");                          
+			            CSVWriter csvWrite = new CSVWriter(new FileWriter(file));	
+			            String arrStr1[] ={"Date", "Amount", "Category", "Merchant","PayMethod", "Description"};
+		                csvWrite.writeNext(arrStr1);
+		                 
+		                if (!expense.isEmpty()) {
+		    	            for (ParseObject expe : expense) {
+		    	            	String arrStr[]={String.valueOf(expe.get("Date")).substring(4, 10) + " - " 
+		    	            			+String.valueOf(expe.get("Date")).substring(24, 28), 
+		    	            			String.valueOf(expe.get("Amount")),
+		    	            			(String) expe.get("Category"),
+		    	            			(String) expe.get("Merchant"),
+		    	            			(String) expe.get("PayMethod"),
+		    	            			(String) expe.get("Description")};		    	 			              
+				                csvWrite.writeNext(arrStr);
+				              }//end of for loop
+		                }//end of if expense not empty                    
 			            csvWrite.close();
 			            Log.i("ERApp", "Success to write to CSV file");
 			            return true;
@@ -137,16 +155,18 @@ public class All_Activity extends ListActivity {
 		             this.dialog.dismiss();
 		         }
 		         if (success){
-		             Toast.makeText(All_Activity.this, "Export successful!", Toast.LENGTH_SHORT).show();
+		        	 Toast.makeText(All_Activity.this, "Export successful!", Toast.LENGTH_SHORT).show();
+		             Log.i("ERApp", "Success to view CSV file");
+		            // Intent openfile = new Intent(Intent.ACTION_GET_CONTENT, Uri.parse(file.getAbsolutePath()));
+		             Intent openfile = new Intent(Intent.ACTION_VIEW,  Uri.fromFile(file));
+		             startActivity(openfile);
 		         }
 		         else {
 		             Toast.makeText(All_Activity.this, "Export failed!", Toast.LENGTH_SHORT).show();
 		         }
 		     }								
 	}//end of class to put task get csv file in background	
-	
-
-	
+		
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -154,7 +174,6 @@ public class All_Activity extends ListActivity {
 		setContentView(R.layout.activity_view_result_list);	
 		//list the query result in background		
 		new RemoteDataTask().execute();
-
 
 	}
 
@@ -180,8 +199,7 @@ public class All_Activity extends ListActivity {
 
 
 	//** Called when the user clicks the button Get Report */	
-	
-	
+		
 	public void generateReport(View view) {
 	    Intent intent = new Intent(this, ReportResult.class);
 	    ExportCSVTask task=new ExportCSVTask();  //do in back ground to send csv file
