@@ -120,7 +120,6 @@ public class Today_Activity extends ListActivity {
 	public void addTodayExpense(View view) {
 	    Intent intent = new Intent(this, AddExpense.class);
 	    startActivity(intent);
-
 	}
 	
 }

@@ -2,10 +2,13 @@ package org.sjsucmpe131.erapp;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
+
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -79,10 +82,30 @@ public class ExpenseReport extends Activity {
 			
 				// Override this method to do custom remote calls
 				protected Boolean doInBackground(final String... args){	
-					// Gets 
-
-					//????query
+					
+					Date month = new Date();	
+					month.setDate(0);
+					month.setHours(0);
+					month.setMinutes(0);
+					month.setSeconds(0);  //month is current month with 000
+					
+					Date month1 = new Date();
+					Date month2 = new Date();
+					Date month3 = new Date();
+					Date month4 = new Date();
+					Date month5 = new Date();
+					Date month6 = new Date();
+					
+					month1.setMonth(month.getMonth()+1);
+					month2.setMonth(month.getMonth()+2);
+					month3.setMonth(month.getMonth()+3);
+					
+					//???????? need while loop to do ???
+					
+					
+					//query expense according to selected period
 					ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("ExpenseObject");
+					query.whereGreaterThan("Date", month);					
 					query.orderByDescending("Date");
 					Log.i("ERApp", "Query datas result doInBackgroud");	
 					try {

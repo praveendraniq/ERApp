@@ -21,12 +21,12 @@ public class AddExpense extends Activity {
 				"food", "cash", 15.00, 
 				"Starbucks", "coffee", "");		
 		
-		Date monthAgo = new Date(2014,04,02);   */
+		Date monthAgo = new Date(2014,04,02);  
 		
 		Date yearAgo = new Date(2014,5,8);
 		insertData.insertData_Expenses(yearAgo , "KmR1mZGPBa", 
 				"food", "cash", 13.06, 
-				"Starbucks", "coffee", "");	 
+				"Starbucks", "coffee", "");	  */
 				
 	}
 
