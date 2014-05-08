@@ -1,5 +1,10 @@
 package org.sjsucmpe131.expenselisting;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import org.sjsucmpe131.erapp.R;
 import org.sjsucmpe131.erapp.ReportResult;
@@ -10,13 +15,18 @@ import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
+import au.com.bytecode.opencsv.CSVReader;
+import au.com.bytecode.opencsv.CSVWriter;
 
 
 
@@ -25,9 +35,8 @@ public class All_Activity extends ListActivity {
 	private List<ParseObject> expense;
 	public Dialog progressDialog;
 	
-	//class to put task to do in background	
-	private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
-		
+	//class to put task query data to do in background	
+	private class RemoteDataTask extends AsyncTask<Void, Void, Void> {		
 		// Override this method to do custom remote calls
 		protected Void doInBackground(Void... params) {
 			// Gets the current list of expense in sorted order
@@ -70,18 +79,74 @@ public class All_Activity extends ListActivity {
 	            			+ (String) expe.get("PayMethod") + "  "
 	            			+ (String) expe.get("Description");
 	                adapter.add(strResult);                
-	                Log.i("ERApp", "*****Query datas expense");	                
+	                Log.i("ERApp", "Query datas expense");	                
 	            }
 	        }
 	        else{
-	        	Log.i("ERApp", "????Query datas from expense empty");	    
+	        	Log.i("ERApp", "Error, Query empty datas");	    
 	        }
 			setListAdapter(adapter);
 	        All_Activity.this.progressDialog.dismiss();
 			Log.i("ERApp", "Query datas succeed form Object Expense");	
 		}		
 }
+	
+	//class to put task get csv file in background	
+	private class ExportCSVTask extends AsyncTask<String, Boolean, Boolean>{
+		
+			private final ProgressDialog dialog = new ProgressDialog(All_Activity.this);
+			
+			@Override
+			protected void onPreExecute() {
+				this.dialog.setMessage("Exporting database...");
+		        this.dialog.show();
+				super.onPreExecute();
+			}
+		
+			// Override this method to do custom remote calls
+			protected Boolean doInBackground(final String... args){
+					
+				    File file=null;	    
+				    File exportDir = new File(Environment.getExternalStorageDirectory(), "");
+			        if (!exportDir.exists()) {
+			            exportDir.mkdirs();
+			        }
+			        //write to file    
+			        file = new File(exportDir, "expense_report.csv");
+			        try {         
+			            file.createNewFile();
+			            CSVWriter csvWrite = new CSVWriter(new FileWriter(file));			            
+			            //need write the query result to csv file
+			            //?? need add some code to put the query result to report
+			            
+			            csvWrite.writeNext("Test");                          
+			            csvWrite.close();
+			            Log.i("ERApp", "Success to write to CSV file");
+			            return true;
+			        }
+			        catch (IOException e){
+			            Log.e("ERApp", e.getMessage(), e);
+			            return false;
+			        }			        			
+				}//end of doInBackground
+						
+			@Override
+		     protected void onPostExecute(final Boolean success) {
+				super.onPostExecute(success);	 
+		         if (this.dialog.isShowing()){
+		             this.dialog.dismiss();
+		         }
+		         if (success){
+		             Toast.makeText(All_Activity.this, "Export successful!", Toast.LENGTH_SHORT).show();
+		         }
+		         else {
+		             Toast.makeText(All_Activity.this, "Export failed!", Toast.LENGTH_SHORT).show();
+		         }
+		     }								
+	}//end of class to put task get csv file in background	
+	
 
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -114,11 +179,13 @@ public class All_Activity extends ListActivity {
 	}
 
 
-	//** Called when the user clicks the Other View button */
+	//** Called when the user clicks the button Get Report */	
+	
 	
 	public void generateReport(View view) {
 	    Intent intent = new Intent(this, ReportResult.class);
-	    //need add some 
+	    ExportCSVTask task=new ExportCSVTask();  //do in back ground to send csv file
+	    task.execute();
 	    startActivity(intent);
 
 	}
