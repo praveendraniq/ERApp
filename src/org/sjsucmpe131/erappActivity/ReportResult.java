@@ -1,4 +1,6 @@
-package org.sjsucmpe131.erapp;
+package org.sjsucmpe131.erappActivity;
+
+import org.sjsucmpe131.erapp.R;
 
 import android.app.Activity;
 import android.os.Bundle;

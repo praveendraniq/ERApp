@@ -8,7 +8,7 @@
     android:gravity="center|top"
     android:orientation="vertical"
     android:padding="30dp"
-    tools:context="org.sjsucmpe131.erapp.UserRegister"
+    tools:context="org.sjsucmpe131.erappActivity.UserRegister"
     tools:ignore="MergeRootFrame" >
 
     

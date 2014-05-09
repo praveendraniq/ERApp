@@ -1,4 +1,4 @@
-package org.sjsucmpe131.erapp;
+package org.sjsucmpe131.erappActivity;
 import org.sjsucmpe131.erapp.R;
 
 import com.parse.LogInCallback;

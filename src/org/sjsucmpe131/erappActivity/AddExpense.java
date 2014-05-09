@@ -1,4 +1,4 @@
-package org.sjsucmpe131.erapp;
+package org.sjsucmpe131.erappActivity;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,6 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+import org.sjsucmpe131.erapp.R;
+import org.sjsucmpe131.model.ExpenseReport;
+import org.sjsucmpe131.model.TouchImageView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -32,13 +36,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-import com.parse.ParseObject;
+import com.parse.ParseFile;
 
 public class AddExpense extends Activity {
-	ParseObject expenseReport = new ParseObject("ExpenseReport");
+	ExpenseReport expenseReport = new ExpenseReport();
+	ParseFile photoSpot = new ParseFile("");
+
 	private TouchImageView photoImage = null;
-	private static int reportID = 0;
-	private boolean isComplete = false;
 	private EditText price;
 	private EditText merchant;
 	private EditText description;
@@ -80,20 +84,8 @@ public class AddExpense extends Activity {
 		currency = (Spinner) findViewById(R.id.addExpenseCurrency);
 		category = (Spinner) findViewById(R.id.addExpenseCategory);
 		payment = (Spinner) findViewById(R.id.addExpensePayment);
-
-		//grab CURRENT user's current expense report
-		//relative security measures needed
-		ParseObject temp_ExpenseReport = expenseReport.getParseObject("" + reportID);
-		// Restore date if inCompleteField is valid.
-		if(!temp_ExpenseReport.getBoolean("isComplete"))
-		{
-			restoreFields();
-		}
-
 		img = (LinearLayout) findViewById(R.id.AddExpensesImageBackground);
-
 		settings = getSharedPreferences(PREFS_NAME, 0);
-
 		currency.setSelection(settings.getInt("index", 7));
 		img.setBackgroundColor(Color.GRAY);
 
@@ -131,7 +123,20 @@ public class AddExpense extends Activity {
 
 		}
 
+		
+		//grab CURRENT user's current expense report
+				//relative security measures needed
+			
+				// Restore date if inCompleteField is valid.
+				if(!temp_ExpenseReport.getBoolean("isComplete"))
+				{
+					restoreFields();
+				}
+		
 	}
+	
+	private c
+	
 
 	private File getOutputPhotoFile() {
 		File directory = new File(
@@ -198,12 +203,10 @@ public class AddExpense extends Activity {
 	}
 
 	private void saveData() {
-		expenseReport.put("reportID", reportID);
-		expenseReport.put("photoImage", photoImage);
-		// The photo is the optional problem.
-		// parse will query if photoimage is null
+		expenseReport.setPhotoFile((ParseFile) photoImage);
 		if (photoImage != null) {
-			isComplete = true;
+			expenseReport.put("isComplete", true);
+			expenseReport.incrementIdNum();
 			reportID++;
 		}
 

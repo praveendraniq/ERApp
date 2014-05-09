@@ -1,7 +1,9 @@
-package org.sjsucmpe131.erapp;
+package org.sjsucmpe131.erappActivity;
 
 
 import java.util.List;
+
+import org.sjsucmpe131.erapp.R;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;

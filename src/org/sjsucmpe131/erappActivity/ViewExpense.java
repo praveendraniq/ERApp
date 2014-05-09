@@ -1,4 +1,6 @@
-package org.sjsucmpe131.erapp;
+package org.sjsucmpe131.erappActivity;
+
+import org.sjsucmpe131.erapp.R;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -9,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 public class ViewExpense extends Activity {
-
+//////TESTS
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

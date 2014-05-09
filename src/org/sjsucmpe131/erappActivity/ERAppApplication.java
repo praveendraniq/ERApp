@@ -1,4 +1,4 @@
-package org.sjsucmpe131.erapp;
+package org.sjsucmpe131.erappActivity;
 
 import com.parse.Parse;
 import android.app.Application;

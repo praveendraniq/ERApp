@@ -14,12 +14,11 @@ public class ExpenseReport extends ParseObject {
 	 * in background Returns false if EXR is not complete, EXR is ready for
 	 * retrieval
 	 */
-	public boolean fillExpenseFields(TouchImageView photoImage,
+	public void fillExpenseFields(TouchImageView photoImage,
 			boolean isComplete, String price, String merchant,
 			String description, String date, String comment, String currency,
 			String category, String payment) {
-		
-		
+
 		put("photoImage", photoImage);
 		// The photo is the optional problem.
 		// parse will query if photoimage is null
@@ -34,11 +33,10 @@ public class ExpenseReport extends ParseObject {
 		put("currency", currency);
 		put("category", category);
 		put("payment", payment);
-		saveInBackground();
-		
-		return isComplete;
 	}
 
-	
-	
+	public boolean isComplete() {
+		return this.getBoolean("isComplete");
+	}
+
 }
