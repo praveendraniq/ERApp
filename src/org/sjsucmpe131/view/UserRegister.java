@@ -1,4 +1,9 @@
-package org.sjsucmpe131.erapp;
+package org.sjsucmpe131.view;
+
+import org.sjsucmpe131.erapp.R;
+import org.sjsucmpe131.erapp.R.id;
+import org.sjsucmpe131.erapp.R.layout;
+import org.sjsucmpe131.erapp.R.string;
 
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;

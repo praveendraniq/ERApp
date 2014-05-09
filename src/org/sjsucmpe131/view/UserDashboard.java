@@ -1,4 +1,11 @@
-package org.sjsucmpe131.erapp;
+package org.sjsucmpe131.view;
+
+import org.sjsucmpe131.erapp.AddExpense;
+import org.sjsucmpe131.erapp.ExpenseReport;
+import org.sjsucmpe131.erapp.R;
+import org.sjsucmpe131.erapp.ViewExpense;
+import org.sjsucmpe131.erapp.R.layout;
+import org.sjsucmpe131.erapp.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
