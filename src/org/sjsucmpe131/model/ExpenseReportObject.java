@@ -14,25 +14,22 @@ public class ExpenseReportObject extends ParseObject {
 	 * in background Returns false if EXR is not complete, EXR is ready for
 	 * retrieval
 	 */
-	public void fillExpenseFields(TouchImageView photoImage,
-			String price, String merchant,
-			String description, String date, String comment, String currency,
-			String category, String payment) {
+	public void fillExpenseFields(String date, String amount, String category,
+			String merchant, String payment, String description,
+			TouchImageView photoImage) {
 
-		put("photoImage", photoImage);
+		put("Date", date);
+		put("Amount", amount);
+		put("Category", category);
+		put("Merchant", merchant);
+		put("PayMethod", payment);
+		put("Description", description);
 		// The photo is the optional problem.
 		// parse will query if photoimage is null
 		if (photoImage != null) {
 			put("isComplete", true);
 		}
-		put("price", price);
-		put("merchant", merchant);
-		put("description", description);
-		put("date", date);
-		put("comment", comment);
-		put("currency", currency);
-		put("category", category);
-		put("payment", payment);
+		put("photoImage", photoImage);
 	}
 
 	public boolean isComplete() {
