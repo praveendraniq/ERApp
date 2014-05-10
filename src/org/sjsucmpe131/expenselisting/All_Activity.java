@@ -5,14 +5,18 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
+import org.sjsucmpe131.erapp.ExpenseReport;
 import org.sjsucmpe131.erapp.R;
 import org.sjsucmpe131.erapp.ReportResult;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
@@ -45,8 +49,21 @@ public class All_Activity extends ListActivity {
 	private class RemoteDataTask extends AsyncTask<Void, Void, Void> {		
 		// Override this method to do custom remote calls
 		protected Void doInBackground(Void... params) {
+			ParseUser user = ParseUser.getCurrentUser();
+			String userId =user.getObjectId();
+			//Log.i("ERApp", "userId "+ userId);	
+			
+			// Make a new post
+			ParseObject post = new ParseObject("Post");
+			post.put("title", "My New Post");
+			post.put("body", "This is some great content.");
+			post.put("user", user);
+			post.saveInBackground();
+			 
+			
 			// Gets the current list of expense in sorted order
 			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("ExpenseObject");
+			query.whereEqualTo("UserId",userId );
 			query.orderByDescending("Date");
 			Log.i("ERApp", "Query datas result doInBackgroud");	
 			try {
@@ -78,14 +95,14 @@ public class All_Activity extends ListActivity {
 	        if (!expense.isEmpty()) {
 	            for (ParseObject expe : expense) {
 	            	String strResult = String.valueOf(expe.get("Date")).substring(4, 10) + " - "
-	            			+String.valueOf(expe.get("Date")).substring(24, 28) +"    "+"$"
+	            			+String.valueOf(expe.get("Date")).substring(30, 34) +"    "+"$"
 	            			+String.valueOf(expe.get("Amount")) + "    "
 	            			+ (String) expe.get("Category") + "    " 
 	            			+ (String) expe.get("Merchant") + "    "
 	            			+ (String) expe.get("PayMethod") + "  "
 	            			+ (String) expe.get("Description");
 	                adapter.add(strResult);                
-	                Log.i("ERApp", "Query datas expense");	                
+	                	                
 	            }
 	        }
 	        else{
@@ -118,8 +135,10 @@ public class All_Activity extends ListActivity {
 			        if (!exportDir.exists()) {
 			            exportDir.mkdirs();
 			        }
-			        //write to file    
-			        file = new File(exportDir, "expense_report.csv");
+			        //write to file   
+			        Date today = new Date();
+			        String filename = "expense_report_All_"+String.valueOf(today).substring(4,10)+".csv";
+			        file = new File(exportDir, filename);
 			        try {         
 			            file.createNewFile();
 			            CSVWriter csvWrite = new CSVWriter(new FileWriter(file));	
@@ -137,7 +156,9 @@ public class All_Activity extends ListActivity {
 		    	            			(String) expe.get("Description")};		    	 			              
 				                csvWrite.writeNext(arrStr);
 				              }//end of for loop
-		                }//end of if expense not empty                    
+		                }else{
+		                	 Toast.makeText(All_Activity.this, "There is no expense to export", Toast.LENGTH_SHORT).show();
+		                }
 			            csvWrite.close();
 			            Log.i("ERApp", "Success to write to CSV file");
 			            return true;
@@ -159,7 +180,14 @@ public class All_Activity extends ListActivity {
 		             Log.i("ERApp", "Success to view CSV file");
 		            // Intent openfile = new Intent(Intent.ACTION_GET_CONTENT, Uri.parse(file.getAbsolutePath()));
 		             Intent openfile = new Intent(Intent.ACTION_VIEW,  Uri.fromFile(file));
-		             startActivity(openfile);
+		             
+		             try {
+						startActivity(openfile);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						Toast.makeText(All_Activity.this, "You don't have document viewer, please install first. "
+								+ "Your report saved under your file manager", Toast.LENGTH_LONG).show();
+					}
 		         }
 		         else {
 		             Toast.makeText(All_Activity.this, "Export failed!", Toast.LENGTH_SHORT).show();

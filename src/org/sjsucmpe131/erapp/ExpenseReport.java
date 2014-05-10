@@ -8,6 +8,7 @@ import java.util.List;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -27,6 +28,7 @@ import au.com.bytecode.opencsv.CSVWriter;
 public class ExpenseReport extends Activity {
 	
 	 private Spinner spinner;
+	 private String period;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,6 @@ public class ExpenseReport extends Activity {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.expense_report, menu);
 		return true;
@@ -54,18 +55,16 @@ public class ExpenseReport extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 			
-	//** Called when the user clicks the button Get Report */	
-	
+	//** Called when the user clicks the button Get Report */		
 		public void Export(View view) {
 		    Intent intent = new Intent(this, ReportResult.class);		    
 			spinner = (Spinner) findViewById(R.id.spinner1);				    
-		    String period = spinner.getSelectedItem().toString();
+		    period = spinner.getSelectedItem().toString();
 		    Log.i("ERApp", "Spinner Item selected " + period);
 		    ExportCSVTask task=new ExportCSVTask();  //do in background to send csv file
 		    task.execute();		    		    	    
 		    startActivity(intent);
 		}
-		
 				
 		//class to put task get csv file in background	
 		private class ExportCSVTask extends AsyncTask<String, Boolean, Boolean>{
@@ -83,29 +82,84 @@ public class ExpenseReport extends Activity {
 				// Override this method to do custom remote calls
 				protected Boolean doInBackground(final String... args){	
 					
-					Date month = new Date();	
-					month.setDate(0);
+					ParseUser user = ParseUser.getCurrentUser();
+					String userId =user.getObjectId();
+					//Log.i("ERApp", "userId "+ userId);	
+					
+					Date month = new Date();
+					//Log.d("ADebugTag", "Value: " + month.toString());
+					int m =month.getMonth()+1; //current month					
+					month.setDate(1);
 					month.setHours(0);
 					month.setMinutes(0);
-					month.setSeconds(0);  //month is current month with 000
+					month.setSeconds(1);  //month is current month 
+
+					Date year= new Date();
+					year.setMonth(0);
+					year.setDate(1);
+					year.setHours(0);
+					year.setMinutes(0);
+					year.setSeconds(1);  //month is current month with 000				
 					
-					Date month1 = new Date();
-					Date month2 = new Date();
-					Date month3 = new Date();
-					Date month4 = new Date();
-					Date month5 = new Date();
-					Date month6 = new Date();
-					
-					month1.setMonth(month.getMonth()+1);
-					month2.setMonth(month.getMonth()+2);
-					month3.setMonth(month.getMonth()+3);
-					
-					//???????? need while loop to do ???
-					
+					Date selection = new Date(); 
+					int n= (int)spinner.getSelectedItemId(); 
+					switch (n) {	
+					//case if period is 1 Month
+					case 0:
+						month.setMonth(m-1-n);	
+						selection = month;
+						break;
+
+					//case if period is 2 Month
+					case 1:
+						month.setMonth(m-1-n);	
+						selection = month;
+						break;
+
+					//case if period is 3 Month
+					case 2:
+						month.setMonth(m-1-n);	
+						selection = month;
+						break;
+						
+						//case if period is 4 Month
+					case 3:
+						month.setMonth(m-1-n);	
+						selection = month;
+						break;
+						
+						//case if period is 5 Month
+					case 4:
+						month.setMonth(m-1-n);	
+						selection = month;
+						Log.d("ADebugTag", "select: " + selection);	
+						break;
+						
+						//case if period is 6 Month
+					case 5:
+						month.setMonth(m-1-n);	
+						selection = month;
+						break;
+						
+						//case if period is 1 Year
+					case 6:
+						selection = year;
+						Log.d("ADebugTag", "select 1 year: " + selection);							
+						break;
+						
+						//case if period is 2 Year
+					case 7:
+						year.setYear(year.getYear()-1);
+						selection =year;
+						Log.d("ADebugTag", "select 2 year: " + selection);		
+						break;					
+					} 
+					Log.d("ADebugTag", "selection: " + selection.toString());
 					
 					//query expense according to selected period
 					ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("ExpenseObject");
-					query.whereGreaterThan("Date", month);					
+					query.whereEqualTo("UserId",userId );
+					query.whereGreaterThan("Date", selection);					
 					query.orderByDescending("Date");
 					Log.i("ERApp", "Query datas result doInBackgroud");	
 					try {
@@ -118,8 +172,10 @@ public class ExpenseReport extends Activity {
 				      if (!exportDir.exists()) {
 				           exportDir.mkdirs();
 				      }
-				        //write to file    
-				      file = new File(exportDir, "expense_report.csv");
+				        //write to file  
+				      Date today = new Date();
+				      String filename = "expense_report_"+ period +"_" +String.valueOf(today).substring(4,10)+".csv";
+				      file = new File(exportDir, filename);
 				      try {         
 				          file.createNewFile();
 				          CSVWriter csvWrite = new CSVWriter(new FileWriter(file));	
@@ -128,7 +184,7 @@ public class ExpenseReport extends Activity {
 			              if (!expense.isEmpty()) {
 			    	         for (ParseObject expe : expense) {
 			    	        	  String arrStr[]={String.valueOf(expe.get("Date")).substring(4, 10) + " - " 
-			    	        			+String.valueOf(expe.get("Date")).substring(24, 28), 
+			    	        			+String.valueOf(expe.get("Date")).substring(30, 34), 
 			    	        			"$" +String.valueOf(expe.get("Amount")),
 			    	            		(String) expe.get("Category"),
 			    	            		(String) expe.get("Merchant"),
@@ -157,14 +213,19 @@ public class ExpenseReport extends Activity {
 			        	 Toast.makeText(ExpenseReport.this, "Export successful!", Toast.LENGTH_SHORT).show();
 			             Log.i("ERApp", "Success to view CSV file");
 			            // Intent openfile = new Intent(Intent.ACTION_GET_CONTENT, Uri.parse(file.getAbsolutePath()));
-			             Intent openfile = new Intent(Intent.ACTION_VIEW,  Uri.fromFile(file));
-			             startActivity(openfile);
+			             Intent openfile = new Intent(Intent.ACTION_VIEW,  Uri.fromFile(file));			             			             
+			             try {
+							startActivity(openfile);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							Toast.makeText(ExpenseReport.this, "You don't have document viewer, please install first. "
+									+ "Your report saved under your file manager",Toast.LENGTH_LONG).show();
+						}
 			         }
 			         else {
 			             Toast.makeText(ExpenseReport.this, "Export failed!", Toast.LENGTH_SHORT).show();
 			         }
 			     }//end of onPostExecute							
 		}//end of class to put task get csv file in background		
-
 
 }
