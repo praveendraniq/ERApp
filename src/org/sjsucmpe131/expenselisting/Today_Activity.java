@@ -3,7 +3,7 @@ package org.sjsucmpe131.expenselisting;
 import java.util.Date;
 import java.util.List;
 
-import org.sjsucmpe131.erapp.AddExpense;
+//import org.sjsucmpe131.erapp.AddExpense;
 import org.sjsucmpe131.erapp.R;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -116,10 +116,10 @@ public class Today_Activity extends ListActivity {
 
 
 	//** Called when the user clicks the button Get Report */	
-		
+	/**	
 	public void addTodayExpense(View view) {
 	    Intent intent = new Intent(this, AddExpense.class);
 	    startActivity(intent);
-	}
+	}*/
 	
 }

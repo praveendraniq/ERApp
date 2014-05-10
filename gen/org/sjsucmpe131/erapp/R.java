@@ -21,6 +21,7 @@ public final class R {
         public static final int bg_save_reminder=0x7f040005;
         public static final int bg_unfinished_entry=0x7f040006;
         public static final int black=0x7f040001;
+        public static final int fontcolor=0x7f040007;
         public static final int grey=0x7f040003;
         public static final int grey_light=0x7f040002;
         public static final int white=0x7f040000;
