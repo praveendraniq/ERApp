@@ -5,7 +5,11 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+import org.sjsucmpe131.model.ExpenseReportObject;
+import org.sjsucmpe131.model.TouchImageView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -33,12 +37,12 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 public class AddExpense extends Activity {
-	ParseObject expenseReport = new ParseObject("ExpenseReport");
+	ExpenseReportObject expenseReport = new ExpenseReportObject();
+
 	private TouchImageView photoImage = null;
-	private static int reportID = 0;
-	private boolean isComplete = false;
 	private EditText price;
 	private EditText merchant;
 	private EditText description;
@@ -80,20 +84,8 @@ public class AddExpense extends Activity {
 		currency = (Spinner) findViewById(R.id.addExpenseCurrency);
 		category = (Spinner) findViewById(R.id.addExpenseCategory);
 		payment = (Spinner) findViewById(R.id.addExpensePayment);
-
-		//grab CURRENT user's current expense report
-		//relative security measures needed
-		ParseObject temp_ExpenseReport = expenseReport.getParseObject("" + reportID);
-		// Restore date if inCompleteField is valid.
-		if(!temp_ExpenseReport.getBoolean("isComplete"))
-		{
-			restoreFields();
-		}
-
 		img = (LinearLayout) findViewById(R.id.AddExpensesImageBackground);
-
 		settings = getSharedPreferences(PREFS_NAME, 0);
-
 		currency.setSelection(settings.getInt("index", 7));
 		img.setBackgroundColor(Color.GRAY);
 
@@ -129,6 +121,18 @@ public class AddExpense extends Activity {
 		if (data.getBoolean("correct")) {
 			setTitle("Correct Expense");
 
+		}
+
+		// grab CURRENT user's current expense report
+		// relative security measures needed
+
+		// Restore date if inCompleteField is valid.
+		
+		ParseUser user = new ParseUser().getCurrentUser();
+		List<ExpenseReportObject> list = user.getList("ExpenseReports");
+		
+		if (!(list.get(list.size() - 1)).getBoolean("isComplete")) {
+			restoreFields();
 		}
 
 	}
@@ -192,35 +196,29 @@ public class AddExpense extends Activity {
 		submit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				saveData();
+
+				expenseReport.saveInBackground();
+				ParseUser user = new ParseUser().getCurrentUser();
+				user.add("ExpenseReport", expenseReport);
+				user.saveInBackground();
+
 			}
 		});
 	}
 
-	private void saveData() {
-		expenseReport.put("reportID", reportID);
-		expenseReport.put("photoImage", photoImage);
-		// The photo is the optional problem.
-		// parse will query if photoimage is null
-		if (photoImage != null) {
-			isComplete = true;
-			reportID++;
-		}
+	private void assignInputToExpenseReport() {
+		// ??expenseReport.setPhotoFile((ParseFile) photoImage);
+		expenseReport.fillExpenseFields(photoImage, price.getText().toString(),
+				merchant.getText().toString(),
+				description.getText().toString(), date.getText().toString(),
+				comment.getText().toString(), currency.getSelectedItem()
+						.toString(), category.getSelectedItem().toString(),
+				payment.getSelectedItem().toString());
 
-		expenseReport.put("isComplete", isComplete);
-		expenseReport.put("price", price.getText());
-		expenseReport.put("merchant", merchant.getText());
-		expenseReport.put("description", description.getText());
-		expenseReport.put("date", date.getText());
-		expenseReport.put("comment", comment.getText());
-		expenseReport.put("currency", currency.getSelectedItem().toString());
-		expenseReport.put("category", category.getSelectedItem().toString());
-		expenseReport.put("payment", payment.getSelectedItem().toString());
-		expenseReport.saveInBackground();
 	}
 
 	private void restoreFields() {
-		reportID = expenseReport.getInt("reportID");
+
 		// MEALSPOTTING APPLICATION for photos
 		// photoImage = expenseReport.get("photoImage");
 
@@ -248,14 +246,16 @@ public class AddExpense extends Activity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		saveData();
+		assignInputToExpenseReport();
+		expenseReport.saveEventually();
 
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-		saveData();
+		assignInputToExpenseReport();
+		expenseReport.saveEventually();
 	}
 
 }
