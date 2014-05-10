@@ -15,7 +15,7 @@ public class ExpenseReportObject extends ParseObject {
 	 * retrieval
 	 */
 	public void fillExpenseFields(TouchImageView photoImage,
-			boolean isComplete, String price, String merchant,
+			String price, String merchant,
 			String description, String date, String comment, String currency,
 			String category, String payment) {
 
