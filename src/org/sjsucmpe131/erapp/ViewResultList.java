@@ -4,6 +4,7 @@ import java.util.List;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import android.app.Dialog;
 import android.app.ListActivity;
@@ -32,6 +33,8 @@ public class ViewResultList extends ListActivity  {
 			// Gets the current list of expense in sorted order
 			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("ExpenseObject");
 			query.orderByDescending("_created_at");
+			ParseUser user = new ParseUser().getCurrentUser(); 
+			query.whereEqualTo("UserId", user.getUsername());
 			Log.i("ERApp", "Query datas result doInBackgroud");	
 			try {
 				expense = query.find();
@@ -65,7 +68,7 @@ public class ViewResultList extends ListActivity  {
 	        if (!expense.isEmpty()) {
 	            for (ParseObject expe : expense) {
 	            	String strResult = String.valueOf(expe.getDate("Date")).substring(0, 10) + "  " 
-	            			+String.valueOf(expe.get("Amount")) + "  "
+	            			+String.valueOf(expe.get("Price")) + "  "
 	            			+ (String) expe.get("Category") + "  " 
 	            			+ (String) expe.get("Merchant") + "  "
 	            			+ (String) expe.get("PayMethod") + "  "

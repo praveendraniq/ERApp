@@ -14,12 +14,12 @@ public class ExpenseReportObject extends ParseObject {
 	 * in background Returns false if EXR is not complete, EXR is ready for
 	 * retrieval
 	 */
-	public void fillExpenseFields(String date, String amount, String category,
+	public void fillExpenseFields(String date, String price, String category,
 			String merchant, String payment, String description,
 			TouchImageView photoImage) {
 
 		put("Date", date);
-		put("Amount", amount);
+		put("Price", price);
 		put("Category", category);
 		put("Merchant", merchant);
 		put("PayMethod", payment);

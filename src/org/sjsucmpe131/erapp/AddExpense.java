@@ -127,10 +127,10 @@ public class AddExpense extends Activity {
 		// relative security measures needed
 
 		// Restore date if inCompleteField is valid.
-		
+
 		ParseUser user = new ParseUser().getCurrentUser();
 		List<ExpenseReportObject> list = user.getList("ExpenseReports");
-		
+
 		if (!(list.get(list.size() - 1)).getBoolean("isComplete")) {
 			restoreFields();
 		}
@@ -196,7 +196,7 @@ public class AddExpense extends Activity {
 		submit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
+				assignInputToExpenseReport();
 				expenseReport.saveInBackground();
 				ParseUser user = new ParseUser().getCurrentUser();
 				user.add("ExpenseReport", expenseReport);
@@ -208,13 +208,10 @@ public class AddExpense extends Activity {
 
 	private void assignInputToExpenseReport() {
 		// ??expenseReport.setPhotoFile((ParseFile) photoImage);
-		expenseReport.fillExpenseFields(photoImage, price.getText().toString(),
-				merchant.getText().toString(),
-				description.getText().toString(), date.getText().toString(),
-				comment.getText().toString(), currency.getSelectedItem()
-						.toString(), category.getSelectedItem().toString(),
-				payment.getSelectedItem().toString());
-
+		expenseReport.fillExpenseFields( date.getText().toString(),
+				price.getText().toString(), category.getSelectedItem().toString(),
+				merchant.getText().toString(), payment.getSelectedItem().toString(), 
+				description.getText().toString(), photoImage);
 	}
 
 	private void restoreFields() {
@@ -228,12 +225,12 @@ public class AddExpense extends Activity {
 		date.setText("" + expenseReport.getString("date"));
 		comment.setText("" + expenseReport.getString("comment"));
 
-//		restoreSpinnerField(currency, entries_currency,
-//				expenseReport.getString("currency"));
-//		restoreSpinnerField(category, entries_category,
-//				expenseReport.getString("category"));
-//		restoreSpinnerField(payment, entries_payment,
-//				expenseReport.getString("payment"));
+		// restoreSpinnerField(currency, entries_currency,
+		// expenseReport.getString("currency"));
+		// restoreSpinnerField(category, entries_category,
+		// expenseReport.getString("category"));
+		// restoreSpinnerField(payment, entries_payment,
+		// expenseReport.getString("payment"));
 	}
 
 	private void restoreSpinnerField(Spinner spinner, ArrayAdapter arr,
