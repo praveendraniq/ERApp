@@ -157,7 +157,7 @@ public class ExpenseReport extends Activity {
 					Log.d("ADebugTag", "selection: " + selection.toString());
 					
 					//query expense according to selected period
-					ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("ExpenseObject");
+					ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("ExpenseReportObject");
 					query.whereEqualTo("UserId",userId );
 					query.whereGreaterThan("Date", selection);					
 					query.orderByDescending("Date");

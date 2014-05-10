@@ -56,7 +56,7 @@ public class Today_Activity extends ListActivity {
 
 			
 			// Gets the today list of expense in sorted order
-			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("ExpenseObject");
+			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("ExpenseReportObject");
 			query.whereEqualTo("UserId",userId );
 			query.whereGreaterThan("Date", today);
 			

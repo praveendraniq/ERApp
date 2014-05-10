@@ -31,7 +31,7 @@ public class ViewResultList extends ListActivity  {
 		// Override this method to do custom remote calls
 		protected Void doInBackground(Void... params) {
 			// Gets the current list of expense in sorted order
-			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("ExpenseObject");
+			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("ExpenseReportObject");
 			query.orderByDescending("_created_at");
 			ParseUser user = new ParseUser().getCurrentUser(); 
 			query.whereEqualTo("UserId", user.getUsername());

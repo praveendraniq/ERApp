@@ -62,7 +62,7 @@ public class All_Activity extends ListActivity {
 			 
 			
 			// Gets the current list of expense in sorted order
-			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("ExpenseObject");
+			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("ExpenseReportObject");
 			query.whereEqualTo("UserId",userId );
 			query.orderByDescending("Date");
 			Log.i("ERApp", "Query datas result doInBackgroud");	
