@@ -1,6 +1,5 @@
 package org.sjsucmpe131.view;
 
-import org.sjsucmpe131.erapp.AddExpense;
 import org.sjsucmpe131.erapp.ExpenseReport;
 import org.sjsucmpe131.erapp.R;
 import org.sjsucmpe131.erapp.ViewExpense;

@@ -102,16 +102,17 @@ public final class R {
         public static final int activity_all=0x7f030001;
         public static final int activity_expense_report=0x7f030002;
         public static final int activity_main=0x7f030003;
-        public static final int activity_report_result=0x7f030004;
-        public static final int activity_this_month=0x7f030005;
-        public static final int activity_this_year=0x7f030006;
-        public static final int activity_today=0x7f030007;
-        public static final int activity_user_dashboard=0x7f030008;
-        public static final int activity_user_register=0x7f030009;
-        public static final int activity_view_expense=0x7f03000a;
-        public static final int activity_view_result_list=0x7f03000b;
-        public static final int expense_listing_common=0x7f03000c;
-        public static final int view_result_row=0x7f03000d;
+        public static final int activity_preregistration=0x7f030004;
+        public static final int activity_report_result=0x7f030005;
+        public static final int activity_this_month=0x7f030006;
+        public static final int activity_this_year=0x7f030007;
+        public static final int activity_today=0x7f030008;
+        public static final int activity_user_dashboard=0x7f030009;
+        public static final int activity_user_register=0x7f03000a;
+        public static final int activity_view_expense=0x7f03000b;
+        public static final int activity_view_result_list=0x7f03000c;
+        public static final int expense_listing_common=0x7f03000d;
+        public static final int view_result_row=0x7f03000e;
     }
     public static final class menu {
         public static final int add_expense=0x7f090000;
