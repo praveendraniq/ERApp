@@ -1,3 +1,9 @@
+/**
+ * NEED SPINNERS TO REFRESH.
+ * NEED CAMERA TO WORK.
+ * NEED UI.
+ */
+
 package org.sjsucmpe131.erapp;
 
 import java.io.File;
